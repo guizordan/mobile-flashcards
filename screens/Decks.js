@@ -42,6 +42,10 @@ const decks = {
 }
 
 export default class Decks extends Component {
+  static navigationOptions = {
+    title: 'Decks',
+  }
+
   goToDeck = deck => {
     console.log('going', this.props)
     this.props.navigation.navigate('Deck', { deck })

@@ -19,10 +19,24 @@ import AddDeck from './screens/AddDeck'
 import StatusBar from './components/StatusBar'
 /* Screens */
 
-const DecksStack = createStackNavigator({
-  Decks: Decks,
-  Deck: Deck,
-})
+const DecksStack = createStackNavigator(
+  {
+    Decks: Decks,
+    Deck: Deck,
+  },
+  {
+    initialRouteName: 'Decks',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  },
+)
 
 const AddDeckStack = createStackNavigator({
   AddDeck: AddDeck,
@@ -35,9 +49,9 @@ const MainNavigator = createAppContainer(
       AddDeck: AddDeckStack,
     },
     {
-      // navigationOptions: {
-      //   header: null,
-      // },
+      navigationOptions: {
+        header: null,
+      },
       tabBarOptions: {
         activeTintColor: Platform.OS === 'ios' ? purple : white,
         style: {

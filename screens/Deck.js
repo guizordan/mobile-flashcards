@@ -19,6 +19,10 @@ const Deck = styled(TouchableOpacity)`
 `
 
 export default class Decks extends Component {
+  static navigationOptions = {
+    title: 'Deck',
+  }
+
   render() {
     return (
       <Container>
