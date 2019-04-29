@@ -9,9 +9,9 @@ import {
   createBottomTabNavigator,
   createAppContainer,
 } from 'react-navigation'
-import { purple, white } from './utils/colors'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import { Feather, AntDesign } from '@expo/vector-icons'
 
+import { black, red, lightRed, gold, white } from './utils/colors'
 /* Screens */
 import Decks from './screens/Decks'
 import Deck from './screens/Deck'
@@ -28,9 +28,9 @@ const DecksStack = createStackNavigator(
     initialRouteName: 'Decks',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: '#f4511e',
+        backgroundColor: black,
       },
-      headerTintColor: '#fff',
+      headerTintColor: white,
       headerTitleStyle: {
         fontWeight: 'bold',
       },
@@ -49,14 +49,26 @@ const MainNavigator = createAppContainer(
       AddDeck: AddDeckStack,
     },
     {
+      defaultNavigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ tintColor }) => {
+          const { routeName } = navigation.state
+
+          switch (routeName) {
+            case 'AddDeck':
+              return <AntDesign name="pluscircle" size={25} color={tintColor} />
+            default:
+              return <Feather name="layers" size={25} color={tintColor} />
+          }
+        },
+      }),
       navigationOptions: {
         header: null,
       },
       tabBarOptions: {
-        activeTintColor: Platform.OS === 'ios' ? purple : white,
+        activeTintColor: white,
         style: {
           height: 56,
-          backgroundColor: Platform.OS === 'ios' ? white : purple,
+          backgroundColor: black,
           shadowColor: 'rgba(0, 0, 0, 0.24)',
           shadowOffset: {
             width: 0,
@@ -75,7 +87,7 @@ export default class App extends React.Component {
     return (
       // <Provider store={createStore(reducer)}>
       <View style={{ flex: 1 }}>
-        <StatusBar backgroundColor={purple} barStyle="light-content" />
+        <StatusBar backgroundColor={black} barStyle="light-content" />
         <MainNavigator />
       </View>
       // </Provider>

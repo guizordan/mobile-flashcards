@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import styled from 'styled-components/native'
-import { FlatList } from 'react-native-gesture-handler'
+import { ScrollView } from 'react-native-gesture-handler'
+import { red, gold } from '../utils/colors'
+import { Bold, WhiteText } from '../components/styled'
 
-const Container = styled(View)`
-  padding: 10px;
+const Container = styled(ScrollView)`
+  padding: 10px 10px 0px 10px;
   flex: 1;
 `
 
-const Deck = styled(TouchableOpacity)`
-  background-color: blue;
+let Deck = styled(TouchableOpacity)`
+  background-color: ${red};
+  border-color: ${gold};
+  border-width: 4px;
   border-radius: 10px;
-  padding: 20px;
+  margin-bottom: -15px;
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: 10px 20px 50px 20px;
   justify-content: space-between;
-  margin-bottom: 10px;
   flex-direction: row;
-  flex: 1;
 `
 
 const decks = {
@@ -34,36 +40,104 @@ const decks = {
     title: 'teste 3',
     cards: [],
   },
-  '4': {
-    id: '4',
-    title: 'teste 4',
-    cards: [],
-  },
+  // '4': {
+  //   id: '4',
+  //   title: 'teste 4',
+  //   cards: [],
+  // },
+  // '5': {
+  //   id: '5',
+  //   title: 'teste 1',
+  //   cards: [],
+  // },
+  // '6': {
+  //   id: '6',
+  //   title: 'teste 2',
+  //   cards: [],
+  // },
+  // '7': {
+  //   id: '7',
+  //   title: 'teste 3',
+  //   cards: [],
+  // },
+  // '8': {
+  //   id: '9',
+  //   title: 'teste 4',
+  //   cards: [],
+  // },
+  // '9': {
+  //   id: '10',
+  //   title: 'teste 1',
+  //   cards: [],
+  // },
+  // '10': {
+  //   id: '11',
+  //   title: 'teste 2',
+  //   cards: [],
+  // },
+  // '11': {
+  //   id: '12',
+  //   title: 'teste 3',
+  //   cards: [],
+  // },
+  // '12': {
+  //   id: '13',
+  //   title: 'aaaaa',
+  //   cards: [],
+  // },
+  // '13': {
+  //   id: '321',
+  //   title: 'teste 1',
+  //   cards: [],
+  // },
+  // '14': {
+  //   id: '321',
+  //   title: 'teste 2',
+  //   cards: [],
+  // },
+  // '15': {
+  //   id: '123',
+  //   title: 'teste 3',
+  //   cards: [],
+  // },
+  // '16': {
+  //   id: '321',
+  //   title: 'aaaaa',
+  //   cards: [],
+  // },
 }
 
 export default class Decks extends Component {
   static navigationOptions = {
-    title: 'Decks',
+    title: 'Your Decks',
   }
 
   goToDeck = deck => {
-    console.log('going', this.props)
     this.props.navigation.navigate('Deck', { deck })
   }
 
   render() {
     return (
       <Container>
-        <FlatList
-          data={Object.values(decks)}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <Deck onPress={() => this.goToDeck(item.id)}>
-              <Text>{item.title}</Text>
-              <Text>Number of cards {item.cards.length}</Text>
+        {Object.values(decks).map((deck, index) => {
+          if (index === Object.values(decks).length - 1) {
+            Deck = styled(Deck)`
+              margin-bottom: 0px;
+              border-bottom-width: 4px;
+            `
+          }
+
+          return (
+            <Deck key={index} onPress={() => this.goToDeck(deck.id)}>
+              <WhiteText>
+                <Bold>{deck.title}</Bold>
+              </WhiteText>
+              <WhiteText>
+                number of cards <Bold>{deck.cards.length}</Bold>
+              </WhiteText>
             </Deck>
-          )}
-        />
+          )
+        })}
       </Container>
     )
   }
