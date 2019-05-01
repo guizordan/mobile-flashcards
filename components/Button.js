@@ -4,7 +4,9 @@ import styled from 'styled-components/native'
 import * as colors from '../utils/colors'
 import { StyledText } from '../components/styled'
 
-export default ({ onPress, color, children, ...props }) => {
+export default ({ color, children, ...rest }) => {
+  color = color || 'blue'
+
   const Button = styled(TouchableOpacity)`
     height: 60px;
     padding: 20px;
@@ -23,7 +25,7 @@ export default ({ onPress, color, children, ...props }) => {
   }
 
   return (
-    <Button {...props}>
+    <Button {...rest}>
       <StyledText color={textColor} bold>
         {children}
       </StyledText>

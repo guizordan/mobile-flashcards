@@ -10,7 +10,7 @@ export const StyledText = styled(Text)`
 
 export const Row = styled(View)`
   flex-direction: row;
-  justify-content: ${({ justify }) => justify};
+  justify-content: ${({ justify }) => justify || 'flex-start'};
 `
 export const Bold = styled(Text)`
   font-weight: bold;

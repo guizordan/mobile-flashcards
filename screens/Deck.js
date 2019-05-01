@@ -30,18 +30,22 @@ class Deck extends Component {
 
   render() {
     const { deck, navigation } = this.props
+
     return (
       <Container>
         <StyledText style={{ fontSize: 18 }}>
           Number of cards: <Bold>{deck.cards.length}</Bold>
         </StyledText>
-        <Row style={{ marginBottom: 30 }} justify="center">
+        <Row style={{ marginBottom: 30 }}>
           <Button style={{ flex: 1 }} color="blue" onPress={this.startQuiz}>
             Start Quiz
           </Button>
         </Row>
         <Row justify="center">
-          <Button color="brown" onPress={() => navigation.navigate('AddCard')}>
+          <Button
+            color="brown"
+            onPress={() => navigation.navigate('AddCard', { deckId: deck.id })}
+          >
             Add a card
           </Button>
           <Button
