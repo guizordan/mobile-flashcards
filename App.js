@@ -49,7 +49,7 @@ const AddDeckStack = createStackNavigator({
 const MainNavigator = createAppContainer(
   createBottomTabNavigator(
     {
-      Decks: DecksStack,
+      Decks: Deck,
       AddDeck: AddDeckStack,
     },
     {
