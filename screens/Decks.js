@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import styled from 'styled-components/native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { red, gold } from '../utils/colors'
+import { blue, gold, white, brown } from '../utils/colors'
 import { Bold, WhiteText } from '../components/styled'
+import { connect } from 'react-redux'
 
 const Container = styled(ScrollView)`
   padding: 10px 10px 0px 10px;
@@ -11,8 +12,9 @@ const Container = styled(ScrollView)`
 `
 
 let Deck = styled(TouchableOpacity)`
-  background-color: ${red};
+  background-color: ${brown};
   border-color: ${gold};
+  color: ${blue};
   border-width: 4px;
   border-radius: 10px;
   margin-bottom: -15px;
@@ -24,90 +26,7 @@ let Deck = styled(TouchableOpacity)`
   flex-direction: row;
 `
 
-const decks = {
-  '1': {
-    id: '1',
-    title: 'teste 1',
-    cards: [],
-  },
-  '2': {
-    id: '2',
-    title: 'teste 2',
-    cards: [],
-  },
-  '3': {
-    id: '3',
-    title: 'teste 3',
-    cards: [],
-  },
-  // '4': {
-  //   id: '4',
-  //   title: 'teste 4',
-  //   cards: [],
-  // },
-  // '5': {
-  //   id: '5',
-  //   title: 'teste 1',
-  //   cards: [],
-  // },
-  // '6': {
-  //   id: '6',
-  //   title: 'teste 2',
-  //   cards: [],
-  // },
-  // '7': {
-  //   id: '7',
-  //   title: 'teste 3',
-  //   cards: [],
-  // },
-  // '8': {
-  //   id: '9',
-  //   title: 'teste 4',
-  //   cards: [],
-  // },
-  // '9': {
-  //   id: '10',
-  //   title: 'teste 1',
-  //   cards: [],
-  // },
-  // '10': {
-  //   id: '11',
-  //   title: 'teste 2',
-  //   cards: [],
-  // },
-  // '11': {
-  //   id: '12',
-  //   title: 'teste 3',
-  //   cards: [],
-  // },
-  // '12': {
-  //   id: '13',
-  //   title: 'aaaaa',
-  //   cards: [],
-  // },
-  // '13': {
-  //   id: '321',
-  //   title: 'teste 1',
-  //   cards: [],
-  // },
-  // '14': {
-  //   id: '321',
-  //   title: 'teste 2',
-  //   cards: [],
-  // },
-  // '15': {
-  //   id: '123',
-  //   title: 'teste 3',
-  //   cards: [],
-  // },
-  // '16': {
-  //   id: '321',
-  //   title: 'aaaaa',
-  //   cards: [],
-  // },
-}
-
-export default class Decks extends Component {
+class Decks extends Component {
   static navigationOptions = {
     title: 'Your Decks',
   }
@@ -117,6 +36,8 @@ export default class Decks extends Component {
   }
 
   render() {
+    const { decks } = this.props
+
     return (
       <Container>
         {Object.values(decks).map((deck, index) => {
@@ -142,3 +63,7 @@ export default class Decks extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ decks }) => ({ decks })
+
+export default connect(mapStateToProps)(Decks)

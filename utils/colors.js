@@ -1,5 +1,7 @@
-export const black = '#191815'
-export const red = '#c91c1c'
-export const lightRed = '#f44b4b'
-export const gold = '#dbcf51'
-export const white = '#f9f8ed'
+const blue = '#92BFB1'
+const red = '#A61C3C'
+const brown = '#694A38'
+const gold = '#F4AC45'
+const white = '#DAD6D6'
+
+export { blue, red, brown, gold, white }

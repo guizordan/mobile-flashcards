@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text } from 'react-native'
 import styled from 'styled-components/native'
-import { FlatList } from 'react-native-gesture-handler'
 import { Bold } from '../components/styled'
 
 const Container = styled(View)`

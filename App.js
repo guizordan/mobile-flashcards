@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Platform } from 'react-native'
 
-// import { Provider } from 'react-redux'
+import { Provider } from 'react-redux'
 // import reducer from './reducers'
 
 import {
@@ -11,12 +11,16 @@ import {
 } from 'react-navigation'
 import { Feather, AntDesign } from '@expo/vector-icons'
 
-import { black, red, lightRed, gold, white } from './utils/colors'
+import { blue, brown, white, gold } from './utils/colors'
+
+import store from './store'
+
+import StatusBar from './components/StatusBar'
+
 /* Screens */
 import Decks from './screens/Decks'
 import Deck from './screens/Deck'
 import AddDeck from './screens/AddDeck'
-import StatusBar from './components/StatusBar'
 /* Screens */
 
 const DecksStack = createStackNavigator(
@@ -28,7 +32,7 @@ const DecksStack = createStackNavigator(
     initialRouteName: 'Decks',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: black,
+        backgroundColor: brown,
       },
       headerTintColor: white,
       headerTitleStyle: {
@@ -65,10 +69,10 @@ const MainNavigator = createAppContainer(
         header: null,
       },
       tabBarOptions: {
-        activeTintColor: white,
+        activeTintColor: gold,
         style: {
           height: 56,
-          backgroundColor: black,
+          backgroundColor: brown,
           shadowColor: 'rgba(0, 0, 0, 0.24)',
           shadowOffset: {
             width: 0,
@@ -85,12 +89,12 @@ const MainNavigator = createAppContainer(
 export default class App extends React.Component {
   render() {
     return (
-      // <Provider store={createStore(reducer)}>
-      <View style={{ flex: 1 }}>
-        <StatusBar backgroundColor={black} barStyle="light-content" />
-        <MainNavigator />
-      </View>
-      // </Provider>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <StatusBar backgroundColor={blue} barStyle="light-content" />
+          <MainNavigator style={{ backgroundColor: brown }} />
+        </View>
+      </Provider>
     )
   }
 }
