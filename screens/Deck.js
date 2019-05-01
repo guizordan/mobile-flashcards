@@ -1,44 +1,67 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
-import { Row } from '../components/styled'
-import { blue } from '../utils/colors'
-
-import { MaterialIcons, AntDesign } from '@expo/vector-icons'
+import { Row, StyledText, Bold } from '../components/styled'
 import Button from '../components/Button'
+
+import { connect } from 'react-redux'
 
 const Container = styled(View)`
   justify-content: center;
+  padding: 10px;
   flex: 1;
 `
 
-export default class Decks extends Component {
-  static navigationOptions = {
-    title: 'Deck',
+class Deck extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.state.params.title,
+  })
+
+  componentDidMount() {
+    const { deck, navigation } = this.props
+    navigation.setParams({
+      title: `Deck ${deck ? deck.title : ''}`,
+    })
   }
 
   startQuiz = () => {}
 
-  addCardToDeck = () => {}
+  removeDeck = () => {}
 
   render() {
+    const { deck, navigation } = this.props
     return (
       <Container>
-        <Row justify="center">
-          <Button color="blue" onPress={this.startQuiz}>
-            {/* <AntDesign size={22} name="caretright" /> */}
+        <StyledText style={{ fontSize: 18 }}>
+          Number of cards: <Bold>{deck.cards.length}</Bold>
+        </StyledText>
+        <Row style={{ marginBottom: 30 }} justify="center">
+          <Button style={{ flex: 1 }} color="blue" onPress={this.startQuiz}>
             Start Quiz
           </Button>
+        </Row>
+        <Row justify="center">
+          <Button color="brown" onPress={() => navigation.navigate('AddCard')}>
+            Add a card
+          </Button>
           <Button
-            color="brown"
+            color="red"
             style={{ marginLeft: 10 }}
-            onPress={this.addCardToDeck}
+            onPress={this.removeDeck}
           >
-            {/* <MaterialIcons size={22} name="library-add" />  */}
-            Add card
+            Remove deck
           </Button>
         </Row>
       </Container>
     )
   }
 }
+
+const mapStateToProps = ({ decks }, { navigation }) => {
+  const deck = decks[navigation.state.params.deckId]
+  return {
+    deck,
+  }
+}
+
+export default connect(mapStateToProps)(Deck)

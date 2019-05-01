@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components/native'
 
-import { TouchableOpacity, Text } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import * as colors from '../utils/colors'
 import { connect } from 'react-redux'
+import { StyledText, Bold } from '../components/styled'
 
 const Container = styled(ScrollView)`
   padding: 10px 10px 0px 10px;
@@ -31,8 +32,8 @@ class Decks extends Component {
     title: 'Your Decks',
   }
 
-  goToDeck = deck => {
-    this.props.navigation.navigate('Deck', { deck })
+  goToDeck = deckId => {
+    this.props.navigation.navigate('Deck', { deckId })
   }
 
   render() {
@@ -50,8 +51,12 @@ class Decks extends Component {
 
           return (
             <Deck key={index} onPress={() => this.goToDeck(deck.id)}>
-              <Text>{deck.title}</Text>
-              <Text>number of cards {deck.cards.length}</Text>
+              <StyledText color="white" bold>
+                {deck.title}
+              </StyledText>
+              <StyledText color="white">
+                number of cards <Bold>{deck.cards.length}</Bold>
+              </StyledText>
             </Deck>
           )
         })}

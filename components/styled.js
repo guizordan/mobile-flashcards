@@ -12,3 +12,6 @@ export const Row = styled(View)`
   flex-direction: row;
   justify-content: ${({ justify }) => justify};
 `
+export const Bold = styled(Text)`
+  font-weight: bold;
+`
