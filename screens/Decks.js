@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { TouchableOpacity, View } from 'react-native'
 import styled from 'styled-components/native'
+
+import { TouchableOpacity, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { blue, gold, white, brown } from '../utils/colors'
-import { Bold, WhiteText } from '../components/styled'
+import * as colors from '../utils/colors'
 import { connect } from 'react-redux'
 
 const Container = styled(ScrollView)`
@@ -12,9 +12,9 @@ const Container = styled(ScrollView)`
 `
 
 let Deck = styled(TouchableOpacity)`
-  background-color: ${brown};
-  border-color: ${gold};
-  color: ${blue};
+  background-color: ${colors.brown};
+  border-color: ${colors.gold};
+  color: ${colors.blue};
   border-width: 4px;
   border-radius: 10px;
   margin-bottom: -15px;
@@ -50,12 +50,8 @@ class Decks extends Component {
 
           return (
             <Deck key={index} onPress={() => this.goToDeck(deck.id)}>
-              <WhiteText>
-                <Bold>{deck.title}</Bold>
-              </WhiteText>
-              <WhiteText>
-                number of cards <Bold>{deck.cards.length}</Bold>
-              </WhiteText>
+              <Text>{deck.title}</Text>
+              <Text>number of cards {deck.cards.length}</Text>
             </Deck>
           )
         })}

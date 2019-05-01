@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import styled from 'styled-components/native'
-import { CenteredRow } from '../components/styled'
+import { Row } from '../components/styled'
 import { blue } from '../utils/colors'
 
-import { MaterialIcons } from '@expo/vector-icons'
+import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 import Button from '../components/Button'
 
 const Container = styled(View)`
-  padding: 50px;
   justify-content: center;
   flex: 1;
 `
@@ -25,18 +24,20 @@ export default class Decks extends Component {
   render() {
     return (
       <Container>
-        <CenteredRow>
+        <Row justify="center">
           <Button color="blue" onPress={this.startQuiz}>
+            {/* <AntDesign size={22} name="caretright" /> */}
             Start Quiz
           </Button>
           <Button
-            color="gold"
+            color="brown"
             style={{ marginLeft: 10 }}
             onPress={this.addCardToDeck}
           >
-            <MaterialIcons size={18} name="library-add" />
+            {/* <MaterialIcons size={22} name="library-add" />  */}
+            Add card
           </Button>
-        </CenteredRow>
+        </Row>
       </Container>
     )
   }

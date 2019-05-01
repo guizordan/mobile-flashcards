@@ -1,23 +1,14 @@
 import styled from 'styled-components/native'
 import { Text, View } from 'react-native'
-import { white, red, brown, blue, gold } from '../utils/colors'
+import * as colors from '../utils/colors'
 
-export const Bold = styled(Text)`
-  font-weight: bold;
-`
-export const WhiteText = styled(Text)`
-  color: ${white};
-`
-export const BrownText = styled(Text)`
-  color: ${brown};
+export const StyledText = styled(Text)`
+  color: ${({ color }) => (color ? colors[color] : colors.brown)};
+  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
 `
 
-export const CenteredRow = styled(View)`
-  flex: 1;
+export const Row = styled(View)`
   flex-direction: row;
-  justify-content: center;
-`
-
-export const CenteredText = styled(Text)`
-  text-align: center;
+  justify-content: ${({ justify }) => justify};
 `
