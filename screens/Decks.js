@@ -42,15 +42,17 @@ class Decks extends Component {
     return (
       <Container>
         {decks.map((deck, index) => {
+          let style = {}
           if (index === Object.values(decks).length - 1) {
-            Deck = styled(Deck)`
-              margin-bottom: 0px;
-              border-bottom-width: 4px;
-            `
+            style = { marginBottom: 0, borderBottomWidth: 4 }
           }
 
           return (
-            <Deck key={index} onPress={() => this.goToDeck(deck.id)}>
+            <Deck
+              key={index}
+              style={style}
+              onPress={() => this.goToDeck(deck.id)}
+            >
               <StyledText color="white" bold>
                 {deck.title}
               </StyledText>

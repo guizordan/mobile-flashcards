@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Alert } from 'react-native'
 import styled from 'styled-components/native'
-import { Row, StyledText } from '../components/styled'
+import { Row, StyledText, Bold } from '../components/styled'
 import Button from '../components/Button'
 
 import { connect } from 'react-redux'
@@ -43,7 +43,7 @@ class Deck extends Component {
     return (
       <Container>
         <StyledText style={{ fontSize: 18 }}>
-          {/* Number of cards: <Bold>{deck.cards.length}</Bold> */}
+          Number of cards: <Bold>{deck.cards.length}</Bold>
         </StyledText>
         <Row style={{ marginBottom: 30 }}>
           <Button style={{ flex: 1 }} color="blue" onPress={this.startQuiz}>

@@ -2,17 +2,17 @@ import React from 'react'
 import { View, TextInput } from 'react-native'
 import styled from 'styled-components/native'
 import PropTypes from 'prop-types'
-import { white, brown } from '../utils/colors'
+import { brown, gold } from '../utils/colors'
 import { StyledText } from '../components/styled'
 
 const StyledTextInputComponent = styled(TextInput)`
   font-size: 22;
   padding-left: 10;
   height: 60;
-  border-color: ${white};
+  border-color: ${gold};
   background: ${brown};
-  color: ${white};
-  border-width: 1;
+  color: ${gold};
+  border-width: 3;
 `
 
 export default function StyledTextInput({ label, ...rest }) {

@@ -1,7 +1,21 @@
+import generateId from '../utils/generateId'
 import NavigationService from '../services/NavigationService'
 
 export const SET = '@@decks/SET'
 export const REMOVE = '@@decks/REMOVE'
+
+export function addDeck(deck) {
+  return dispatch => {
+    deck = { ...deck, cards: [], id: generateId() }
+
+    dispatch({
+      type: SET,
+      payload: deck,
+    })
+
+    NavigationService.navigate('Decks')
+  }
+}
 
 export function addCardToDeck(card) {
   return (dispatch, getState) => {

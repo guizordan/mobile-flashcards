@@ -1,28 +1,61 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { KeyboardAvoidingView } from 'react-native'
 import styled from 'styled-components/native'
+import { Row } from '../components/styled'
+import Button from '../components/Button'
 
-const Container = styled(View)`
+import { connect } from 'react-redux'
+import StyledTextInput from '../components/StyledTextInput'
+import { addDeck } from '../actions/decks'
+
+const Container = styled(KeyboardAvoidingView)`
+  justify-content: center;
   padding: 10px;
   flex: 1;
 `
 
-const Deck = styled(TouchableOpacity)`
-  background-color: blue;
-  border-radius: 10px;
-  padding: 20px;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  flex-direction: row;
-  flex: 1;
-`
+class AddDeck extends Component {
+  state = {
+    title: '',
+  }
 
-export default class Decks extends Component {
+  static navigationOptions = {
+    title: 'Create a new deck',
+  }
+
   render() {
+    const { title } = this.state
+    const { addDeck } = this.props
+
     return (
-      <Container>
-        <Text>Add deck</Text>
+      <Container behavior="position" enabled>
+        <Row>
+          <StyledTextInput
+            style={{ marginBottom: 15 }}
+            value={title}
+            label="Title"
+            onChangeText={title => this.setState({ title })}
+          />
+        </Row>
+
+        <Row>
+          <Button
+            disabled={!title.length}
+            style={{ flex: 1 }}
+            onPress={() => {
+              addDeck({ title })
+              this.setState({ title: '' })
+            }}
+          >
+            Create
+          </Button>
+        </Row>
       </Container>
     )
   }
 }
+
+export default connect(
+  null,
+  { addDeck },
+)(AddDeck)

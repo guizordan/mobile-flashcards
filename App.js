@@ -51,9 +51,20 @@ const DecksStack = createStackNavigator(
   },
 )
 
-const AddDeckStack = createStackNavigator({
-  AddDeck: AddDeck,
-})
+const AddDeckStack = createStackNavigator(
+  { AddDeck },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: brown,
+      },
+      headerTintColor: white,
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  },
+)
 
 const MainNavigator = createAppContainer(
   createBottomTabNavigator(
