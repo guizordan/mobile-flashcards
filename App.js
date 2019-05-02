@@ -23,6 +23,7 @@ import Decks from './screens/Decks'
 import Deck from './screens/Deck'
 import AddDeck from './screens/AddDeck'
 import AddCard from './screens/AddCard'
+import Quiz from './screens/Quiz'
 /* Screens */
 
 store.subscribe(() => {
@@ -36,6 +37,7 @@ const DecksStack = createStackNavigator(
     Decks,
     Deck,
     AddCard,
+    Quiz,
   },
   {
     initialRouteName: 'Decks',

@@ -46,7 +46,12 @@ class Deck extends Component {
           Number of cards: <Bold>{deck.cards.length}</Bold>
         </StyledText>
         <Row style={{ marginBottom: 30 }}>
-          <Button style={{ flex: 1 }} color="blue" onPress={this.startQuiz}>
+          <Button
+            style={{ flex: 1 }}
+            color="blue"
+            onPress={() => navigation.navigate('Quiz', { deckId: deck.id })}
+            disabled={!deck.cards.length}
+          >
             Start Quiz
           </Button>
         </Row>
