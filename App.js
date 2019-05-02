@@ -24,6 +24,12 @@ import AddDeck from './screens/AddDeck'
 import AddCard from './screens/AddCard'
 /* Screens */
 
+store.subscribe(() => {
+  const { cards, decks } = store.getState()
+  console.log('cards', cards)
+  console.log('decks', decks)
+})
+
 const DecksStack = createStackNavigator(
   {
     Decks,

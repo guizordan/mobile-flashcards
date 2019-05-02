@@ -6,6 +6,7 @@ import Button from '../components/Button'
 
 import { connect } from 'react-redux'
 import StyledTextInput from '../components/StyledTextInput'
+import { addCard } from '../actions/cards'
 
 const Container = styled(View)`
   justify-content: center;
@@ -28,7 +29,7 @@ class AddCard extends Component {
 
   render() {
     const { answer, question } = this.state
-    const { addCardToDeck, deck } = this.props
+    const { addCard, deck } = this.props
 
     return (
       <Container>
@@ -56,7 +57,7 @@ class AddCard extends Component {
         <Row>
           <Button
             style={{ flex: 1 }}
-            onPress={() => addCardToDeck({ question, answer }, deck.id)}
+            onPress={() => addCard({ question, answer }, deck.id)}
           >
             Add
           </Button>
@@ -73,4 +74,7 @@ const mapStateToProps = ({ decks }, { navigation }) => {
   }
 }
 
-export default connect(mapStateToProps)(AddCard)
+export default connect(
+  mapStateToProps,
+  { addCard },
+)(AddCard)
