@@ -6,6 +6,7 @@ export const StyledText = styled(Text)`
   color: ${({ color }) => (color ? colors[color] : colors.brown)};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   text-align: ${({ center }) => (center ? 'center' : 'left')};
+  font-size: ${({ size }) => size || 18};
 `
 
 export const Row = styled(View)`

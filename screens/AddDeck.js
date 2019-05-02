@@ -40,7 +40,7 @@ class AddDeck extends Component {
 
         <Row>
           <Button
-            disabled={!title.length}
+            disabled={!title}
             style={{ flex: 1 }}
             onPress={() => {
               addDeck({ title })

@@ -74,7 +74,7 @@ const mapStateToProps = ({ decks }, { navigation }) => {
   const deck = decks[navigation.state.params.deckId]
 
   return {
-    deck,
+    deck: deck || { title: 'loading', cards: [] },
   }
 }
 

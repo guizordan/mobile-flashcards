@@ -1,12 +1,6 @@
 import { SET, REMOVE } from '../actions/decks'
 
-const initialState = {
-  '1': {
-    id: '1',
-    title: 'deck 1',
-    cards: [],
-  },
-}
+const initialState = {}
 
 export default function(state = initialState, { type, payload }) {
   switch (type) {

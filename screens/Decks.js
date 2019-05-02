@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import styled from 'styled-components/native'
-
-import { TouchableOpacity } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
-import * as colors from '../utils/colors'
 import { connect } from 'react-redux'
-import { StyledText, Bold } from '../components/styled'
+
+import styled from 'styled-components/native'
+import { StyledText, Bold, Row } from '../components/styled'
+
+import { TouchableOpacity, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import Button from '../components/Button'
+
+import * as colors from '../utils/colors'
 
 const Container = styled(ScrollView)`
   padding: 10px 10px 0px 10px;
@@ -37,33 +40,55 @@ class Decks extends Component {
   }
 
   render() {
-    const { decks } = this.props
-
-    return (
-      <Container>
-        {decks.map((deck, index) => {
-          let style = {}
-          if (index === Object.values(decks).length - 1) {
-            style = { marginBottom: 0, borderBottomWidth: 4 }
-          }
-
-          return (
-            <Deck
-              key={index}
-              style={style}
-              onPress={() => this.goToDeck(deck.id)}
+    const { decks, navigation } = this.props
+    if (!decks.length) {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <StyledText style={{ marginBottom: 20 }} center bold>
+            You are out of decks.
+          </StyledText>
+          <Row justify="center">
+            <StyledText style={{ alignSelf: 'center' }}>
+              Do you wish to
+            </StyledText>
+            <Button
+              color="brown"
+              style={{ marginLeft: 10, marginRight: 10 }}
+              onPress={() => navigation.navigate('AddDeck')}
             >
-              <StyledText color="white" bold>
-                {deck.title}
-              </StyledText>
-              <StyledText color="white">
-                number of cards <Bold>{deck.cards.length}</Bold>
-              </StyledText>
-            </Deck>
-          )
-        })}
-      </Container>
-    )
+              Create a deck
+            </Button>
+            <StyledText style={{ alignSelf: 'center' }}>?</StyledText>
+          </Row>
+        </View>
+      )
+    } else {
+      return (
+        <Container>
+          {decks.map((deck, index) => {
+            let style = {}
+            if (index === Object.values(decks).length - 1) {
+              style = { marginBottom: 0, borderBottomWidth: 4 }
+            }
+
+            return (
+              <Deck
+                key={index}
+                style={style}
+                onPress={() => this.goToDeck(deck.id)}
+              >
+                <StyledText color="white" bold>
+                  {deck.title}
+                </StyledText>
+                <StyledText color="white">
+                  number of cards <Bold>{deck.cards.length}</Bold>
+                </StyledText>
+              </Deck>
+            )
+          })}
+        </Container>
+      )
+    }
   }
 }
 

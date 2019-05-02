@@ -56,6 +56,7 @@ class AddCard extends Component {
         <Row>
           <Button
             style={{ flex: 1 }}
+            disabled={!question || !answer}
             onPress={() => addCard({ question, answer }, deck.id)}
           >
             Add
