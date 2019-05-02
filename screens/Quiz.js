@@ -8,8 +8,13 @@ import { connect } from 'react-redux'
 
 const Container = styled(View)`
   justify-content: center;
-  padding: 10px;
+  padding: 10;
   flex: 1;
+`
+
+const Card = styled(View)`
+  padding: 15;
+  background-color: ${blue};
 `
 
 class Quiz extends Component {

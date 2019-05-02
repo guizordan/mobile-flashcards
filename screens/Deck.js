@@ -9,7 +9,7 @@ import { removeDeck } from '../actions/decks'
 
 const Container = styled(View)`
   justify-content: center;
-  padding: 10px;
+  padding: 10;
   flex: 1;
 `
 

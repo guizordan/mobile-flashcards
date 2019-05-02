@@ -10,7 +10,7 @@ import { addCard } from '../actions/cards'
 
 const Container = styled(KeyboardAvoidingView)`
   justify-content: center;
-  padding: 10px;
+  padding: 10;
   flex: 1;
 `
 

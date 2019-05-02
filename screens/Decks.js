@@ -11,7 +11,7 @@ import Button from '../components/Button'
 import * as colors from '../utils/colors'
 
 const Container = styled(ScrollView)`
-  padding: 10px 10px 0px 10px;
+  padding: 10 10 0 10;
   flex: 1;
 `
 
@@ -19,13 +19,13 @@ let Deck = styled(TouchableOpacity)`
   background-color: ${colors.brown};
   border-color: ${colors.gold};
   color: ${colors.blue};
-  border-width: 4px;
-  border-radius: 10px;
-  margin-bottom: -15px;
-  border-bottom-width: 0px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  padding: 10px 20px 50px 20px;
+  border-width: 4;
+  border-radius: 10;
+  margin-bottom: -15;
+  border-bottom-width: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 10 20 50 20;
   justify-content: space-between;
   flex-direction: row;
 `

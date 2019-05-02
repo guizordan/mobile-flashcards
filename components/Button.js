@@ -8,9 +8,9 @@ export default ({ color, children, disabled, ...rest }) => {
   color = color || 'blue'
 
   const Button = styled(TouchableOpacity)`
-    height: 60px;
-    border-radius: 2px;
-    padding: 20px;
+    height: 60;
+    border-radius: 2;
+    padding: 20;
     background-color: ${colors[color]};
     opacity: ${disabled ? '.4' : '1'};
     align-items: center;

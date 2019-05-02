@@ -13,7 +13,7 @@ export function addDeck(deck) {
       payload: deck,
     })
 
-    NavigationService.navigate('Decks')
+    NavigationService.navigate('Deck', { deckId: deck.id })
   }
 }
 
