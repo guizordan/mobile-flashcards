@@ -16,6 +16,7 @@ import { blue, brown, white, gold } from './utils/colors'
 import store from './store'
 
 import StatusBar from './components/StatusBar'
+import NavigationService from './services/NavigationService'
 
 /* Screens */
 import Decks from './screens/Decks'
@@ -104,7 +105,11 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={{ flex: 1 }}>
           <StatusBar backgroundColor={blue} barStyle="light-content" />
-          <MainNavigator />
+          <MainNavigator
+            ref={navigatorRef => {
+              NavigationService.setTopLevelNavigator(navigatorRef)
+            }}
+          />
         </View>
       </Provider>
     )

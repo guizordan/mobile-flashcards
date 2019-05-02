@@ -1,6 +1,7 @@
 import generateId from '../utils/generateId'
 
 import { addCardToDeck } from './decks'
+import NavigationService from '../services/NavigationService'
 
 export const SET = '@@cards/SET'
 
@@ -15,5 +16,7 @@ export function addCard({ question, answer }, deckId) {
     })
 
     dispatch(addCardToDeck(payload))
+
+    NavigationService.navigate('Deck', { deckId })
   }
 }
