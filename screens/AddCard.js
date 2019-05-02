@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { KeyboardAvoidingView } from 'react-native'
 import styled from 'styled-components/native'
 import { Row, StyledText, Bold } from '../components/styled'
 import Button from '../components/Button'
@@ -8,9 +8,8 @@ import { connect } from 'react-redux'
 import StyledTextInput from '../components/StyledTextInput'
 import { addCard } from '../actions/cards'
 
-const Container = styled(View)`
+const Container = styled(KeyboardAvoidingView)`
   justify-content: center;
-  align-items: stretch;
   padding: 10px;
   flex: 1;
 `
@@ -32,7 +31,7 @@ class AddCard extends Component {
     const { addCard, deck } = this.props
 
     return (
-      <Container>
+      <Container behavior="position" enabled>
         <StyledText center>
           Adding a new card to <Bold>{deck.title}</Bold>
         </StyledText>

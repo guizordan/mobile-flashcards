@@ -41,7 +41,7 @@ class Decks extends Component {
 
     return (
       <Container>
-        {Object.values(decks).map((deck, index) => {
+        {decks.map((deck, index) => {
           if (index === Object.values(decks).length - 1) {
             Deck = styled(Deck)`
               margin-bottom: 0px;
@@ -65,6 +65,10 @@ class Decks extends Component {
   }
 }
 
-const mapStateToProps = ({ decks }) => ({ decks })
+const mapStateToProps = ({ decks }) => {
+  return {
+    decks: Object.values(decks),
+  }
+}
 
 export default connect(mapStateToProps)(Decks)

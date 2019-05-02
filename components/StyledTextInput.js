@@ -6,10 +6,9 @@ import { white, brown } from '../utils/colors'
 import { StyledText } from '../components/styled'
 
 const StyledTextInputComponent = styled(TextInput)`
-  font-size: 20;
+  font-size: 22;
   padding-left: 10;
   height: 60;
-  border-radius: 5;
   border-color: ${white};
   background: ${brown};
   color: ${white};

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Alert } from 'react-native'
 import styled from 'styled-components/native'
-import { Row, StyledText, Bold } from '../components/styled'
+import { Row, StyledText } from '../components/styled'
 import Button from '../components/Button'
 
 import { connect } from 'react-redux'
+import { removeDeck } from '../actions/decks'
 
 const Container = styled(View)`
   justify-content: center;
@@ -26,7 +27,15 @@ class Deck extends Component {
 
   startQuiz = () => {}
 
-  removeDeck = () => {}
+  removeDeck = ({ title, id }) => {
+    Alert.alert(`Removing ${title}`, 'Are you sure?', [
+      { text: 'Yes', onPress: () => this.props.removeDeck(id) },
+      {
+        text: 'No',
+        style: 'cancel',
+      },
+    ])
+  }
 
   render() {
     const { deck, navigation } = this.props
@@ -34,7 +43,7 @@ class Deck extends Component {
     return (
       <Container>
         <StyledText style={{ fontSize: 18 }}>
-          Number of cards: <Bold>{deck.cards.length}</Bold>
+          {/* Number of cards: <Bold>{deck.cards.length}</Bold> */}
         </StyledText>
         <Row style={{ marginBottom: 30 }}>
           <Button style={{ flex: 1 }} color="blue" onPress={this.startQuiz}>
@@ -51,7 +60,7 @@ class Deck extends Component {
           <Button
             color="red"
             style={{ marginLeft: 10 }}
-            onPress={this.removeDeck}
+            onPress={() => this.removeDeck(deck)}
           >
             Remove deck
           </Button>
@@ -63,9 +72,13 @@ class Deck extends Component {
 
 const mapStateToProps = ({ decks }, { navigation }) => {
   const deck = decks[navigation.state.params.deckId]
+
   return {
     deck,
   }
 }
 
-export default connect(mapStateToProps)(Deck)
+export default connect(
+  mapStateToProps,
+  { removeDeck },
+)(Deck)

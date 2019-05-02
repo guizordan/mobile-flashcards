@@ -9,12 +9,11 @@ export default ({ color, children, ...rest }) => {
 
   const Button = styled(TouchableOpacity)`
     height: 60px;
-    padding: 20px;
     border-radius: 2px;
+    padding: 20px;
     background-color: ${colors[color]};
-    justify-content: center;
     align-items: center;
-    align-self: center;
+    justify-content: center;
   `
   let textColor = 'white'
 
@@ -26,7 +25,7 @@ export default ({ color, children, ...rest }) => {
 
   return (
     <Button {...rest}>
-      <StyledText color={textColor} bold>
+      <StyledText style={{ fontSize: 22 }} color={textColor} bold>
         {children}
       </StyledText>
     </Button>
