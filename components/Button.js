@@ -4,17 +4,17 @@ import styled from 'styled-components/native'
 import * as colors from '../utils/colors'
 import { StyledText } from '../components/styled'
 
-export default ({ color, children, disabled, ...rest }) => {
+export default ({ color, children, disabled, block, style, ...rest }) => {
   color = color || 'blue'
 
   const Button = styled(TouchableOpacity)`
     height: 60;
+    padding: 20px;
     border-radius: 2;
-    padding: 20;
-    background-color: ${colors[color]};
-    opacity: ${disabled ? '.4' : '1'};
     align-items: center;
     justify-content: center;
+    opacity: ${disabled ? '.4' : '1'};
+    background-color: ${colors[color]};
   `
   let textColor = 'white'
 
@@ -24,8 +24,10 @@ export default ({ color, children, disabled, ...rest }) => {
       break
   }
 
+  if (block) style = { ...style, flex: 1 }
+
   return (
-    <Button {...rest} disabled={disabled}>
+    <Button {...rest} style={style} disabled={disabled}>
       <StyledText style={{ fontSize: 22 }} color={textColor} bold>
         {children}
       </StyledText>

@@ -10,7 +10,7 @@ import { addDeck } from '../actions/decks'
 
 const Container = styled(KeyboardAvoidingView)`
   justify-content: center;
-  padding: 10;
+  padding: 10px;
   flex: 1;
 `
 

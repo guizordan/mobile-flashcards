@@ -6,10 +6,11 @@ import Button from '../components/Button'
 
 import { connect } from 'react-redux'
 import { removeDeck } from '../actions/decks'
+import { Foundation, Ionicons } from '@expo/vector-icons'
 
 const Container = styled(View)`
   justify-content: center;
-  padding: 10;
+  padding: 10px;
   flex: 1;
 `
 
@@ -47,12 +48,12 @@ class Deck extends Component {
         </StyledText>
         <Row style={{ marginBottom: 30 }}>
           <Button
-            style={{ flex: 1 }}
+            block
             color="blue"
-            onPress={() => navigation.navigate('Quiz', { deckId: deck.id })}
             disabled={!deck.cards.length}
+            onPress={() => navigation.navigate('Quiz', { deckId: deck.id })}
           >
-            Start Quiz
+            <Foundation size={22} name="play-circle" /> Start Quiz
           </Button>
         </Row>
         <Row justify="center">
@@ -60,14 +61,14 @@ class Deck extends Component {
             color="brown"
             onPress={() => navigation.navigate('AddCard', { deckId: deck.id })}
           >
-            Add a card
+            <Ionicons size={22} name="md-add-circle-outline" /> Add a card
           </Button>
           <Button
             color="red"
             style={{ marginLeft: 10 }}
             onPress={() => this.removeDeck(deck)}
           >
-            Remove deck
+            <Foundation size={22} name="trash" /> Remove deck
           </Button>
         </Row>
       </Container>
