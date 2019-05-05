@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextInput } from 'react-native'
 import styled from 'styled-components/native'
-import { brown } from '../utils/colors'
+import { brown, white } from '../utils/colors'
 import { Row } from './styled'
 
 const StyledTextInputComponent = styled(TextInput)`
@@ -9,7 +9,7 @@ const StyledTextInputComponent = styled(TextInput)`
   font-size: 22;
   padding-left: 10;
   height: 60;
-  background: white;
+  background: ${white};
   color: ${brown};
   border-radius: 10px;
 `

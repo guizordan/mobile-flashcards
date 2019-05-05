@@ -8,7 +8,15 @@ import {
 } from 'react-navigation'
 import { Feather, AntDesign } from '@expo/vector-icons'
 
-import { blue, brown, white, gold } from './utils/colors'
+import {
+  blue,
+  brown,
+  light,
+  white,
+  darkerbrown,
+  darkerred,
+  red,
+} from './utils/colors'
 
 import store from './store'
 
@@ -43,7 +51,7 @@ const DecksStack = createStackNavigator(
     initialRouteName: 'Decks',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: brown,
+        backgroundColor: darkerred,
       },
       headerTintColor: white,
       headerTitleStyle: {
@@ -58,7 +66,7 @@ const CreateDeckStack = createStackNavigator(
   {
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: brown,
+        backgroundColor: darkerred,
       },
       headerTintColor: white,
       headerTitleStyle: {
@@ -85,6 +93,7 @@ const MainNavigator = createAppContainer(
       },
     },
     {
+      resetOnBlur: true,
       defaultNavigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ tintColor }) => {
           const { routeName } = navigation.state
@@ -101,10 +110,14 @@ const MainNavigator = createAppContainer(
         header: null,
       },
       tabBarOptions: {
-        activeTintColor: gold,
+        activeTintColor: white,
+        activeBackgroundColor: darkerbrown,
+        inactiveBackgroundColor: brown,
+        tabStyle: {
+          padding: 10,
+        },
         style: {
-          height: 50,
-          backgroundColor: brown,
+          height: 72,
         },
       },
     },

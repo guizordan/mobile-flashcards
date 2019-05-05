@@ -26,7 +26,7 @@ export default ({ color, children, disabled, block, onPress, ...rest }) => {
     opacity: ${disabled ? '.4' : '1'};
     background-color: ${colors[`darker${color}`]};
   `
-  let textColor = 'white'
+  let textColor = 'light'
 
   switch (color) {
     case 'blue':

@@ -6,21 +6,21 @@ const initialState = {
     question: 'O Leozinho eh biba',
     answer: 'mas é claro!!!',
     deckId: '1',
-    correctGuess: null,
+    correctGuess: undefined,
   },
   '2': {
     id: '2',
     question: 'o React é uma lib de requisições rest',
     answer: 'nops',
     deckId: '1',
-    correctGuess: null,
+    correctGuess: undefined,
   },
   '3': {
     id: '3',
     question: 'a mimiquinha é braba',
     answer: 'pode aposta q sim',
     deckId: '1',
-    correctGuess: null,
+    correctGuess: undefined,
   },
 }
 

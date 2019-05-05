@@ -17,8 +17,7 @@ import * as colors from '../utils/colors'
 
 let Deck = styled(TouchableOpacity)`
   background-color: ${colors.brown};
-  border-color: ${colors.gold};
-  color: ${colors.blue};
+  border-color: ${colors.red};
   border-width: 4;
   border-radius: 10;
   margin-bottom: -15;
@@ -79,10 +78,10 @@ class Decks extends Component {
                 style={style}
                 onPress={() => this.goToDeck(deck.id)}
               >
-                <StyledText color="white" bold>
+                <StyledText color="light" bold>
                   {deck.title}
                 </StyledText>
-                <StyledText color="white">
+                <StyledText color="light">
                   number of cards <Bold>{deck.cards.length}</Bold>
                 </StyledText>
               </Deck>

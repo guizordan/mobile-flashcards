@@ -39,7 +39,7 @@ export function clearCardsStatus(deckId) {
 
     cards = Object.values(cards)
       .filter(card => card.deckId === deckId)
-      .map(card => ({ [card.id]: { ...card, correctGuess: null } }))
+      .map(card => ({ [card.id]: { ...card, correctGuess: undefined } }))
       .reduce((cards, card) => ({ ...cards, ...card }), {})
 
     dispatch({

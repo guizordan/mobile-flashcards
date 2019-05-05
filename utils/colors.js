@@ -5,7 +5,8 @@ const darkerred = '#7c132b'
 const brown = '#694A38'
 const darkerbrown = '#4c3527'
 const gold = '#F4AC45'
-const white = '#DAD6D6'
+const light = '#EDEDED'
+const white = '#FFF'
 const green = 'green'
 
 export {
@@ -14,6 +15,7 @@ export {
   brown,
   gold,
   white,
+  light,
   green,
   darkerbrown,
   darkerblue,

@@ -16,7 +16,7 @@ class Quiz extends Component {
 
   state = {
     currentCard: 0,
-    showAnswer: false,
+    coverAnswer: true,
   }
 
   componentDidMount() {
@@ -30,7 +30,7 @@ class Quiz extends Component {
     this.setState(({ currentCard }) => {
       return {
         currentCard: currentCard + 1,
-        showAnswer: false,
+        coverAnswer: true,
       }
     })
   }
@@ -39,7 +39,7 @@ class Quiz extends Component {
     this.setState(({ currentCard }) => {
       return {
         currentCard: currentCard - 1,
-        showAnswer: false,
+        coverAnswer: true,
       }
     })
   }
@@ -57,7 +57,7 @@ class Quiz extends Component {
   }
 
   render() {
-    const { currentCard, showAnswer } = this.state
+    const { currentCard, coverAnswer } = this.state
     const { cards } = this.props
     const card = cards[currentCard]
 
@@ -65,22 +65,19 @@ class Quiz extends Component {
       <Container>
         <NavigationEvents
           onWillFocus={() =>
-            this.setState({ currentCard: 0, showAnswer: false })
+            this.setState({ currentCard: 0, coverAnswer: true })
           }
         />
+
         <Card
-          style={{ flex: 2, marginBottom: 5 }}
+          style={{ flex: 3, marginBottom: 5 }}
           card={card}
-          showAnswer={showAnswer}
-          onPress={() => this.setState({ showAnswer: true })}
+          coverAnswer={coverAnswer}
+          onPress={() => this.setState({ coverAnswer: false })}
         />
 
-        <StyledText style={{ marginBottom: 20 }} size="12" center>
-          Tap the card to reveal the <Bold>answer</Bold>
-        </StyledText>
-
         <Row style={{ flex: 1 }} justify="center">
-          {showAnswer && (
+          {(!coverAnswer || typeof card.correctGuess !== 'undefined') && (
             <GuessSwitch
               card={card}
               onValueChange={value => this.changeCorrectGuess(card, value)}

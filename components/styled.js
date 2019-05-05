@@ -22,18 +22,18 @@ export const Container = styled(View)`
   flex: 1;
   padding: 20px;
   justify-content: center;
-  background-color: ${colors.white};
+  background-color: ${colors.light};
 `
 
 export const ScrollContainer = styled(ScrollView)`
   flex: 1;
   padding: 20px;
-  background-color: ${colors.white};
+  background-color: ${colors.light};
 `
 
 export const KeyboardAvoidingContainer = styled(KeyboardAvoidingView)`
   flex: 1;
   padding: 20px;
   justify-content: center;
-  background-color: ${colors.white};
+  background-color: ${colors.light};
 `
