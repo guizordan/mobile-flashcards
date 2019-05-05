@@ -132,7 +132,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <StatusBar backgroundColor={blue} barStyle="light-content" />
+        <StatusBar backgroundColor={red} barStyle="light-content" />
         <MainNavigator
           style={{ flex: 1 }}
           ref={navigatorRef => {

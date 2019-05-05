@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { brown, gold, red } from '../utils/colors'
 import styled from 'styled-components/native'
-import { TouchableOpacity, View } from 'react-native'
+import {
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  TouchableHighlight,
+  View,
+  Animated,
+} from 'react-native'
 import { StyledText, Bold } from './styled'
 
-const Card = styled(View)`
+const StyledCard = styled(View)`
   flex: 1;
+  justify-content: space-between;
   padding: 15px;
   border-width: 3px;
   border-radius: 6px;
@@ -13,10 +20,11 @@ const Card = styled(View)`
   border-color: ${gold};
   background-color: ${red};
 `
-const Cover = styled(TouchableOpacity)`
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableHighlight)
+const Cover = styled(AnimatedTouchable)`
   width: 100%;
   height: 50%;
-  bottom: 0px;
   position: absolute;
   padding: 15px;
   justify-content: center;
@@ -26,19 +34,48 @@ const Cover = styled(TouchableOpacity)`
   border-color: ${gold};
 `
 
-export default ({ onPress, card, coverAnswer, ...rest }) => {
-  return (
-    <View {...rest}>
-      <Card>
-        <StyledText style={{ flex: 1 }} center size={22} color="light">
-          <Bold>Q:</Bold> {card.question}
-        </StyledText>
-        <StyledText style={{ flex: 1 }} center size={22} color="light">
-          <Bold>A:</Bold> {card.answer}
-        </StyledText>
-      </Card>
-      {coverAnswer && (
-        <Cover onPress={onPress}>
+export default class Card extends Component {
+  state = {
+    bottom: new Animated.Value(0),
+    opacity: new Animated.Value(1),
+  }
+
+  static getDerivedStateFromProps({ card, coverAnswer }, state) {
+    if (typeof card.correctGuess === 'boolean') {
+      return { ...state, opacity: new Animated.Value(0) }
+    }
+
+    if (coverAnswer) {
+      return { bottom: new Animated.Value(0), opacity: new Animated.Value(1) }
+    }
+
+    return state
+  }
+
+  uncoverAnswer = () => {
+    const { bottom, opacity } = this.state
+    Animated.spring(bottom, { toValue: -90, duration: 4000 }).start()
+    Animated.timing(opacity, { toValue: 0, duration: 800 }).start()
+
+    this.props.onPress()
+  }
+
+  render() {
+    const { card, coverAnswer, ...rest } = this.props
+    const { bottom, opacity } = this.state
+
+    return (
+      <View {...rest}>
+        <StyledCard>
+          <StyledText style={{ flex: 1 }} center size={22} color="light">
+            <Bold>Q:</Bold> {card.question}
+          </StyledText>
+          <StyledText style={{ flex: 1 }} center size={22} color="light">
+            <Bold>A:</Bold> {card.answer}
+          </StyledText>
+        </StyledCard>
+
+        <Cover style={{ bottom, opacity }} onPress={this.uncoverAnswer}>
           <StyledText
             style={{ fontSize: 24, justifyContent: 'center' }}
             size={18}
@@ -49,7 +86,7 @@ export default ({ onPress, card, coverAnswer, ...rest }) => {
             Reveal the answer!
           </StyledText>
         </Cover>
-      )}
-    </View>
-  )
+      </View>
+    )
+  }
 }

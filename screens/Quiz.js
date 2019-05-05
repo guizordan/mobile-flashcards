@@ -56,6 +56,10 @@ class Quiz extends Component {
     this.props.setCorrectGuess(card, value)
   }
 
+  uncoverAnswer = () => {
+    this.setState({ coverAnswer: false })
+  }
+
   render() {
     const { currentCard, coverAnswer } = this.state
     const { cards } = this.props
@@ -73,11 +77,11 @@ class Quiz extends Component {
           style={{ flex: 3, marginBottom: 5 }}
           card={card}
           coverAnswer={coverAnswer}
-          onPress={() => this.setState({ coverAnswer: false })}
+          onPress={() => this.uncoverAnswer()}
         />
 
-        <Row style={{ flex: 1 }} justify="center">
-          {(!coverAnswer || typeof card.correctGuess !== 'undefined') && (
+        <Row style={{ flex: 1, marginBottom: 20 }} justify="center">
+          {(!coverAnswer || typeof card.correctGuess === 'boolean') && (
             <GuessSwitch
               card={card}
               onValueChange={value => this.changeCorrectGuess(card, value)}
@@ -98,6 +102,7 @@ class Quiz extends Component {
               color="blue"
               onPress={this.finishQuiz}
               style={{ marginLeft: 20 }}
+              disabled={typeof card.correctGuess === 'undefined'}
             >
               Finish Quiz!
             </Button>
@@ -106,6 +111,7 @@ class Quiz extends Component {
               color="brown"
               onPress={this.nextQuestion}
               style={{ marginLeft: 20 }}
+              disabled={typeof card.correctGuess === 'undefined'}
             >
               Next
               <AntDesign size={22} name="caretright" />
