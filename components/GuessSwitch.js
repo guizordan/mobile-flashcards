@@ -17,7 +17,7 @@ const YesButton = styled(TouchableHighlight)`
   background-color: ${green};
 `
 
-export default ({ onValueChange, card, ...rest }) => {
+export default function GuessSwitch({ onValueChange, card, ...rest }) {
   const correctGuessStyle =
     typeof card.correctGuess === 'boolean' && card.correctGuess
       ? { opacity: 1 }

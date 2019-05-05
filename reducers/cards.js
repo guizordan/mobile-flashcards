@@ -3,22 +3,23 @@ import { SET_CARD, SET_CARDS } from '../actions/cards'
 const initialState = {
   '1': {
     id: '1',
-    question: 'O Leozinho eh biba',
-    answer: 'mas é claro!!!',
+    question:
+      'Is React a lightweight JavaScript library for building REST API applications?',
+    answer: 'No. It is a JavaScript library for building user interfaces.',
     deckId: '1',
     correctGuess: undefined,
   },
   '2': {
     id: '2',
-    question: 'o React é uma lib de requisições rest',
-    answer: 'nops',
+    question: 'What is the capital of Brasil?',
+    answer: 'Brasília',
     deckId: '1',
     correctGuess: undefined,
   },
   '3': {
     id: '3',
-    question: 'a mimiquinha é braba',
-    answer: 'pode aposta q sim',
+    question: 'Behind Blue Eyes is a song composed by which band?',
+    answer: 'The Who.',
     deckId: '1',
     correctGuess: undefined,
   },

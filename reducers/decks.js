@@ -1,20 +1,19 @@
-import { SET_DECK, REMOVE } from '../actions/decks'
+import { SET_DECK, RESET_DECKS } from '../actions/decks'
 
 const initialState = {
   '1': {
     id: '1',
-    title: 'Deck Test',
+    title: 'Sample Deck',
     cards: ['1', '2', '3'],
   },
 }
 
 export default function(state = initialState, { type, payload }) {
   switch (type) {
+    case RESET_DECKS:
+      return payload
     case SET_DECK:
       return { ...state, ...{ [payload.id]: payload } }
-    case REMOVE:
-      const newState = Object.values(state).filter(deck => deck.id !== payload)
-      return { ...newState }
     default:
       return state
   }

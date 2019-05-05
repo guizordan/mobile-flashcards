@@ -8,15 +8,7 @@ import {
 } from 'react-navigation'
 import { Feather, AntDesign } from '@expo/vector-icons'
 
-import {
-  blue,
-  brown,
-  light,
-  white,
-  darkerbrown,
-  darkerred,
-  red,
-} from './utils/colors'
+import { brown, white, darkerbrown, darkerred, red } from './utils/colors'
 
 import store from './store'
 
@@ -32,12 +24,6 @@ import AddCard from './screens/AddCard'
 import Quiz from './screens/Quiz'
 import Score from './screens/Score'
 /* Screens */
-
-store.subscribe(() => {
-  const { cards, decks } = store.getState()
-  // console.log('cards', cards)
-  // console.log('decks', decks)
-})
 
 const DecksStack = createStackNavigator(
   {
@@ -134,7 +120,6 @@ export default class App extends Component {
       <Provider store={store}>
         <StatusBar backgroundColor={red} barStyle="light-content" />
         <MainNavigator
-          style={{ flex: 1 }}
           ref={navigatorRef => {
             NavigationService.setTopLevelNavigator(navigatorRef)
           }}

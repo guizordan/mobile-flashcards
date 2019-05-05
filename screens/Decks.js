@@ -40,7 +40,7 @@ class Decks extends Component {
 
   render() {
     const { decks, navigation } = this.props
-    if (!decks.length) {
+    if (decks.length === 0) {
       return (
         <Container>
           <View>

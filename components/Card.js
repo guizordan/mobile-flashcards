@@ -1,18 +1,11 @@
 import React, { Component } from 'react'
 import { brown, gold, red } from '../utils/colors'
 import styled from 'styled-components/native'
-import {
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  TouchableHighlight,
-  View,
-  Animated,
-} from 'react-native'
+import { TouchableHighlight, View, Animated } from 'react-native'
 import { StyledText, Bold } from './styled'
 
 const StyledCard = styled(View)`
   flex: 1;
-  justify-content: space-between;
   padding: 15px;
   border-width: 3px;
   border-radius: 6px;
@@ -67,10 +60,19 @@ export default class Card extends Component {
     return (
       <View {...rest}>
         <StyledCard>
-          <StyledText style={{ flex: 1 }} center size={22} color="light">
+          <StyledText style={{ flex: 1 }} center size={20} color="light">
             <Bold>Q:</Bold> {card.question}
           </StyledText>
-          <StyledText style={{ flex: 1 }} center size={22} color="light">
+          <StyledText
+            style={{
+              flex: 1,
+              textAlignVertical: 'bottom',
+              justifyContent: 'flex-end',
+            }}
+            center
+            size={20}
+            color="gold"
+          >
             <Bold>A:</Bold> {card.answer}
           </StyledText>
         </StyledCard>
