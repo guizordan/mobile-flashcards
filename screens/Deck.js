@@ -1,18 +1,11 @@
 import React, { Component } from 'react'
 import { View, Alert } from 'react-native'
-import styled from 'styled-components/native'
-import { Row, StyledText, Bold } from '../components/styled'
+import { StyledText, Bold, Container } from '../components/styled'
 import Button from '../components/Button'
 
 import { connect } from 'react-redux'
 import { removeDeck } from '../actions/decks'
 import { Foundation, Ionicons } from '@expo/vector-icons'
-
-const Container = styled(View)`
-  justify-content: center;
-  padding: 10px;
-  flex: 1;
-`
 
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -43,34 +36,29 @@ class Deck extends Component {
 
     return (
       <Container>
-        <StyledText style={{ fontSize: 18 }}>
-          Number of cards: <Bold>{deck.cards.length}</Bold>
-        </StyledText>
-        <Row style={{ marginBottom: 30 }}>
+        <View style={{ alignItems: 'center' }}>
           <Button
-            block
             color="blue"
             disabled={!deck.cards.length}
+            style={{ marginBottom: 5 }}
             onPress={() => navigation.navigate('Quiz', { deckId: deck.id })}
           >
             <Foundation size={22} name="play-circle" /> Start Quiz
           </Button>
-        </Row>
-        <Row justify="center">
+          <StyledText center style={{ fontSize: 14, marginBottom: 30 }}>
+            Number of cards: <Bold>{deck.cards.length}</Bold>
+          </StyledText>
           <Button
             color="brown"
+            style={{ marginBottom: 20 }}
             onPress={() => navigation.navigate('AddCard', { deckId: deck.id })}
           >
             <Ionicons size={22} name="md-add-circle-outline" /> Add a card
           </Button>
-          <Button
-            color="red"
-            style={{ marginLeft: 10 }}
-            onPress={() => this.removeDeck(deck)}
-          >
+          <Button color="red" onPress={() => this.removeDeck(deck)}>
             <Foundation size={22} name="trash" /> Remove deck
           </Button>
-        </Row>
+        </View>
       </Container>
     )
   }

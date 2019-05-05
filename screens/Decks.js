@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import styled from 'styled-components/native'
-import { StyledText, Bold, Row } from '../components/styled'
+import {
+  StyledText,
+  Bold,
+  Row,
+  Container,
+  ScrollContainer,
+} from '../components/styled'
 
 import { TouchableOpacity, View } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
 import Button from '../components/Button'
 
 import * as colors from '../utils/colors'
-
-const Container = styled(ScrollView)`
-  padding: 10px 10px 0px 10px;
-  flex: 1;
-`
 
 let Deck = styled(TouchableOpacity)`
   background-color: ${colors.brown};
@@ -43,28 +43,30 @@ class Decks extends Component {
     const { decks, navigation } = this.props
     if (!decks.length) {
       return (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          <StyledText style={{ marginBottom: 20 }} center bold>
-            You are out of decks.
-          </StyledText>
-          <Row justify="center">
-            <StyledText style={{ alignSelf: 'center' }}>
-              Do you wish to
+        <Container>
+          <View>
+            <StyledText style={{ marginBottom: 20 }} center bold>
+              You are out of decks.
             </StyledText>
-            <Button
-              color="brown"
-              style={{ marginLeft: 10, marginRight: 10 }}
-              onPress={() => navigation.navigate('AddDeck')}
-            >
-              Create a deck
-            </Button>
-            <StyledText style={{ alignSelf: 'center' }}>?</StyledText>
-          </Row>
-        </View>
+            <Row justify="center">
+              <StyledText style={{ alignSelf: 'center' }}>
+                Do you wish to
+              </StyledText>
+              <Button
+                color="brown"
+                style={{ marginLeft: 10, marginRight: 10 }}
+                onPress={() => navigation.navigate('AddDeck')}
+              >
+                Create a deck
+              </Button>
+              <StyledText style={{ alignSelf: 'center' }}>?</StyledText>
+            </Row>
+          </View>
+        </Container>
       )
     } else {
       return (
-        <Container>
+        <ScrollContainer style={{ paddingBottom: 0 }}>
           {decks.map((deck, index) => {
             let style = {}
             if (index === Object.values(decks).length - 1) {
@@ -86,7 +88,7 @@ class Decks extends Component {
               </Deck>
             )
           })}
-        </Container>
+        </ScrollContainer>
       )
     }
   }

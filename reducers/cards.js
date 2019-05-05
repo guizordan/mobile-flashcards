@@ -1,4 +1,4 @@
-import { SET_CARD } from '../actions/cards'
+import { SET_CARD, SET_CARDS } from '../actions/cards'
 
 const initialState = {
   '1': {
@@ -26,6 +26,8 @@ const initialState = {
 
 export default function(state = initialState, { type, payload }) {
   switch (type) {
+    case SET_CARDS:
+      return { ...state, ...payload }
     case SET_CARD:
       return { ...state, ...{ [payload.id]: payload } }
     default:

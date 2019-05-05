@@ -1,7 +1,7 @@
 import generateId from '../utils/generateId'
 import NavigationService from '../services/NavigationService'
 
-export const SET_DECK = '@@decks/SET'
+export const SET_DECK = '@@decks/SET_DECK'
 export const REMOVE = '@@decks/REMOVE'
 
 export function addDeck(deck) {

@@ -1,27 +1,11 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Switch } from 'react-native'
-import styled from 'styled-components/native'
-import { StyledText, Bold, Row } from '../components/styled'
+import { StyledText, Bold, Row, Container } from '../components/styled'
 import Button from '../components/Button'
-import { blue, gold } from '../utils/colors'
 import { connect } from 'react-redux'
 import { AntDesign } from '@expo/vector-icons'
-import { setCorrectGuess } from '../actions/cards'
-
-const Container = styled(View)`
-  justify-content: center;
-  padding: 10px;
-  flex: 1;
-`
-
-const Card = styled(TouchableOpacity)`
-  padding: 15px;
-  justify-content: center;
-  border-width: 5;
-  background-color: ${blue};
-  border-color: ${gold};
-  flex: 1;
-`
+import { setCorrectGuess, clearCardsStatus } from '../actions/cards'
+import Card from '../components/Card'
+import GuessSwitch from '../components/GuessSwitch'
 
 class Quiz extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -30,7 +14,7 @@ class Quiz extends Component {
 
   state = {
     currentCard: 0,
-    showingAnswer: false,
+    showAnswer: false,
   }
 
   componentDidMount() {
@@ -44,7 +28,7 @@ class Quiz extends Component {
     this.setState(({ currentCard }) => {
       return {
         currentCard: currentCard + 1,
-        showingAnswer: false,
+        showAnswer: false,
       }
     })
   }
@@ -53,17 +37,15 @@ class Quiz extends Component {
     this.setState(({ currentCard }) => {
       return {
         currentCard: currentCard - 1,
-        showingAnswer: false,
+        showAnswer: false,
       }
     })
   }
 
-  toggleCard = () => {
-    this.setState(({ showingAnswer }) => {
-      return {
-        showingAnswer: !showingAnswer,
-      }
-    })
+  finishQuiz = () => {
+    const { clearCardsStatus, deck, navigation } = this.props
+    clearCardsStatus(deck.id)
+    navigation.navigate('Deck')
   }
 
   changeCorrectGuess = (card, value) => {
@@ -71,63 +53,58 @@ class Quiz extends Component {
   }
 
   render() {
-    const { currentCard, showingAnswer } = this.state
+    const { currentCard, showAnswer } = this.state
     const { cards } = this.props
     const card = cards[currentCard]
 
     return (
       <Container>
-        <Card onPress={this.toggleCard}>
-          <StyledText center size={22} color="white">
-            {(showingAnswer && (
-              <>
-                <Bold>A:</Bold> {card.answer}
-              </>
-            )) || (
-              <>
-                <Bold>Q:</Bold> {card.question}
-              </>
-            )}
-          </StyledText>
-        </Card>
-        <StyledText center>
-          Tap the card to reveal the{' '}
-          {(showingAnswer && <Bold>question</Bold>) || <Bold>answer</Bold>}
+        <Card
+          style={{ flex: 2, marginBottom: 5 }}
+          card={card}
+          showAnswer={showAnswer}
+          onPress={() => this.setState({ showAnswer: true })}
+        />
+
+        <StyledText style={{ marginBottom: 20 }} size="12" center>
+          Tap the card to reveal the <Bold>answer</Bold>
         </StyledText>
-        <Row justify="center">
-          <StyledText>
-            Did you get it <Bold>right</Bold>?
-          </StyledText>
-          <Switch
-            value={card.correctGuess}
-            onValueChange={value => this.changeCorrectGuess(card, value)}
-          />
-          {typeof card.correctGuess === 'boolean' && card.correctGuess && (
-            <StyledText color="green">yes</StyledText>
-          )}
-          {typeof card.correctGuess === 'boolean' && !card.correctGuess && (
-            <StyledText color="red">no</StyledText>
+
+        <Row style={{ flex: 1 }} justify="center">
+          {showAnswer && (
+            <GuessSwitch
+              card={card}
+              onValueChange={value => this.changeCorrectGuess(card, value)}
+            />
           )}
         </Row>
-        <Row justify="space-between">
+
+        <Row style={{ flex: 1 }} justify="space-between">
           <Button
-            block
             color="brown"
             onPress={this.previousQuestion}
             disabled={currentCard === 0}
           >
             <AntDesign size={22} name="caretleft" /> Previous
           </Button>
-          <Button
-            block
-            color="brown"
-            onPress={this.nextQuestion}
-            style={{ marginLeft: 20 }}
-            disabled={currentCard === cards.length - 1}
-          >
-            Next
-            <AntDesign size={22} name="caretright" />
-          </Button>
+          {(currentCard === cards.length - 1 && (
+            <Button
+              color="blue"
+              onPress={this.finishQuiz}
+              style={{ marginLeft: 20 }}
+            >
+              Finish Quiz!
+            </Button>
+          )) || (
+            <Button
+              color="brown"
+              onPress={this.nextQuestion}
+              style={{ marginLeft: 20 }}
+            >
+              Next
+              <AntDesign size={22} name="caretright" />
+            </Button>
+          )}
         </Row>
       </Container>
     )
@@ -146,5 +123,5 @@ const mapStateToProps = ({ decks, cards }, { navigation }) => {
 
 export default connect(
   mapStateToProps,
-  { setCorrectGuess },
+  { setCorrectGuess, clearCardsStatus },
 )(Quiz)

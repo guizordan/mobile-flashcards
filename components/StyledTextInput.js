@@ -1,32 +1,23 @@
 import React from 'react'
-import { View, TextInput } from 'react-native'
+import { TextInput } from 'react-native'
 import styled from 'styled-components/native'
-import PropTypes from 'prop-types'
-import { brown, gold } from '../utils/colors'
-import { StyledText } from '../components/styled'
+import { brown } from '../utils/colors'
+import { Row } from './styled'
 
 const StyledTextInputComponent = styled(TextInput)`
+  flex: 1;
   font-size: 22;
   padding-left: 10;
   height: 60;
-  border-color: ${gold};
-  background: ${brown};
-  color: ${gold};
-  border-width: 3;
+  background: white;
+  color: ${brown};
+  border-radius: 10px;
 `
 
-export default function StyledTextInput({ label, ...rest }) {
+export default function StyledTextInput({ ...rest }) {
   return (
-    <View style={{ flex: 1 }}>
-      <StyledText bold color="brown">
-        {label}
-      </StyledText>
-
+    <Row>
       <StyledTextInputComponent {...rest} />
-    </View>
+    </Row>
   )
-}
-
-StyledTextInput.propTypes = {
-  label: PropTypes.string.isRequired,
 }

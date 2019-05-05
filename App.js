@@ -1,8 +1,5 @@
 import React from 'react'
-import { View, Platform } from 'react-native'
-
 import { Provider } from 'react-redux'
-// import reducer from './reducers'
 
 import {
   createStackNavigator,
@@ -28,8 +25,8 @@ import Quiz from './screens/Quiz'
 
 store.subscribe(() => {
   const { cards, decks } = store.getState()
-  console.log('cards', cards)
-  console.log('decks', decks)
+  // console.log('cards', cards)
+  // console.log('decks', decks)
 })
 
 const DecksStack = createStackNavigator(
@@ -86,7 +83,6 @@ const MainNavigator = createAppContainer(
     },
     {
       defaultNavigationOptions: ({ navigation }) => ({
-        initialRouteName: 'Decks',
         tabBarIcon: ({ tintColor }) => {
           const { routeName } = navigation.state
 
@@ -116,14 +112,13 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={{ flex: 1 }}>
-          <StatusBar backgroundColor={blue} barStyle="light-content" />
-          <MainNavigator
-            ref={navigatorRef => {
-              NavigationService.setTopLevelNavigator(navigatorRef)
-            }}
-          />
-        </View>
+        <StatusBar backgroundColor={blue} barStyle="light-content" />
+        <MainNavigator
+          style={{ flex: 1 }}
+          ref={navigatorRef => {
+            NavigationService.setTopLevelNavigator(navigatorRef)
+          }}
+        />
       </Provider>
     )
   }

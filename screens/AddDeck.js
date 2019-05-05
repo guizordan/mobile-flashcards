@@ -1,18 +1,11 @@
 import React, { Component } from 'react'
 import { KeyboardAvoidingView } from 'react-native'
-import styled from 'styled-components/native'
-import { Row } from '../components/styled'
+import { Container } from '../components/styled'
 import Button from '../components/Button'
 
 import { connect } from 'react-redux'
 import StyledTextInput from '../components/StyledTextInput'
 import { addDeck } from '../actions/decks'
-
-const Container = styled(KeyboardAvoidingView)`
-  justify-content: center;
-  padding: 10px;
-  flex: 1;
-`
 
 class AddDeck extends Component {
   state = {
@@ -28,20 +21,18 @@ class AddDeck extends Component {
     const { addDeck } = this.props
 
     return (
-      <Container behavior="position" enabled>
-        <Row>
+      <Container>
+        <KeyboardAvoidingView behavior="position" enabled>
           <StyledTextInput
             style={{ marginBottom: 15 }}
             value={title}
-            label="Title"
+            placeholder="Title"
             onChangeText={title => this.setState({ title })}
           />
-        </Row>
 
-        <Row>
           <Button
+            justify="center"
             disabled={!title}
-            style={{ flex: 1 }}
             onPress={() => {
               addDeck({ title })
               this.setState({ title: '' })
@@ -49,7 +40,7 @@ class AddDeck extends Component {
           >
             Create
           </Button>
-        </Row>
+        </KeyboardAvoidingView>
       </Container>
     )
   }
