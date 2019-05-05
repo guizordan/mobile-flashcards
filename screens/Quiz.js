@@ -7,6 +7,7 @@ import { setCorrectGuess, clearCardsStatus } from '../actions/cards'
 import Card from '../components/Card'
 import GuessSwitch from '../components/GuessSwitch'
 import { NavigationEvents } from 'react-navigation'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -45,7 +46,10 @@ class Quiz extends Component {
 
   finishQuiz = () => {
     const { deck, navigation } = this.props
-    navigation.navigate('Score', { deckId: deck.id })
+    clearLocalNotification().then(() => {
+      setLocalNotification()
+      navigation.navigate('Score', { deckId: deck.id })
+    })
   }
 
   changeCorrectGuess = (card, value) => {

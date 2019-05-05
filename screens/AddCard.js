@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { KeyboardAvoidingView } from 'react-native'
-import { StyledText, Bold, Container } from '../components/styled'
+import {
+  StyledText,
+  Bold,
+  Container,
+  KeyboardAvoidingContainer,
+} from '../components/styled'
 import Button from '../components/Button'
 
 import { connect } from 'react-redux'
@@ -24,34 +28,32 @@ class AddCard extends Component {
     const { addCard, deck } = this.props
 
     return (
-      <Container>
-        <KeyboardAvoidingView behavior="position" enabled>
-          <StyledText style={{ marginBottom: 10 }} center>
-            Adding a new card to <Bold>{deck.title}</Bold>
-          </StyledText>
+      <KeyboardAvoidingContainer behavior="position" enabled>
+        <StyledText style={{ marginBottom: 10 }} center>
+          Adding a new card to <Bold>{deck.title}</Bold>
+        </StyledText>
 
-          <StyledTextInput
-            style={{ marginBottom: 15 }}
-            value={question}
-            placeholder="Question"
-            onChangeText={question => this.setState({ question })}
-          />
-          <StyledTextInput
-            style={{ marginBottom: 15 }}
-            value={answer}
-            placeholder="Answer"
-            onChangeText={answer => this.setState({ answer })}
-          />
+        <StyledTextInput
+          style={{ marginBottom: 15 }}
+          value={question}
+          placeholder="Question"
+          onChangeText={question => this.setState({ question })}
+        />
+        <StyledTextInput
+          style={{ marginBottom: 15 }}
+          value={answer}
+          placeholder="Answer"
+          onChangeText={answer => this.setState({ answer })}
+        />
 
-          <Button
-            justify="center"
-            disabled={!question || !answer}
-            onPress={() => addCard({ question, answer }, deck.id)}
-          >
-            Add Card
-          </Button>
-        </KeyboardAvoidingView>
-      </Container>
+        <Button
+          justify="center"
+          disabled={!question || !answer}
+          onPress={() => addCard({ question, answer }, deck.id)}
+        >
+          Add Card
+        </Button>
+      </KeyboardAvoidingContainer>
     )
   }
 }

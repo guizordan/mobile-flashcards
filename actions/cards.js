@@ -1,4 +1,4 @@
-import generateId from '../utils/generateId'
+import { generateId } from '../utils/helpers'
 
 import { addCardToDeck } from './decks'
 import NavigationService from '../services/NavigationService'

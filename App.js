@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 
 import {
@@ -14,6 +14,7 @@ import store from './store'
 
 import StatusBar from './components/StatusBar'
 import NavigationService from './services/NavigationService'
+import { setLocalNotification } from './utils/helpers'
 
 /* Screens */
 import Decks from './screens/Decks'
@@ -110,7 +111,11 @@ const MainNavigator = createAppContainer(
   ),
 )
 
-export default class App extends React.Component {
+export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={store}>

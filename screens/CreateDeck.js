@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { KeyboardAvoidingView } from 'react-native'
-import { Container } from '../components/styled'
 import Button from '../components/Button'
 
 import { connect } from 'react-redux'
@@ -21,27 +19,25 @@ class CreateDeck extends Component {
     const { createDeck } = this.props
 
     return (
-      <Container>
-        <KeyboardAvoidingView behavior="position" enabled>
-          <StyledTextInput
-            style={{ marginBottom: 15 }}
-            value={title}
-            placeholder="Title"
-            onChangeText={title => this.setState({ title })}
-          />
+      <KeyboardAvoidingContainer behavior="position" enabled>
+        <StyledTextInput
+          style={{ marginBottom: 15 }}
+          value={title}
+          placeholder="Title"
+          onChangeText={title => this.setState({ title })}
+        />
 
-          <Button
-            justify="center"
-            disabled={!title}
-            onPress={() => {
-              createDeck({ title })
-              this.setState({ title: '' })
-            }}
-          >
-            Create Deck
-          </Button>
-        </KeyboardAvoidingView>
-      </Container>
+        <Button
+          justify="center"
+          disabled={!title}
+          onPress={() => {
+            createDeck({ title })
+            this.setState({ title: '' })
+          }}
+        >
+          Create Deck
+        </Button>
+      </KeyboardAvoidingContainer>
     )
   }
 }

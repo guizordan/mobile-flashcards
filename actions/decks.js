@@ -1,4 +1,4 @@
-import generateId from '../utils/generateId'
+import { generateId } from '../utils/helpers'
 import NavigationService from '../services/NavigationService'
 
 export const SET_DECK = '@@decks/SET_DECK'

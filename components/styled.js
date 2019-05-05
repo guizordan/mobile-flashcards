@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import { Text, View, ScrollView } from 'react-native'
+import { Text, View, ScrollView, KeyboardAvoidingView } from 'react-native'
 import * as colors from '../utils/colors'
 
 export const StyledText = styled(Text)`
@@ -26,6 +26,12 @@ export const Container = styled(View)`
 `
 
 export const ScrollContainer = styled(ScrollView)`
+  flex: 1;
+  padding: 20px;
+  background-color: ${colors.white};
+`
+
+export const KeyboardAvoidingContainer = styled(KeyboardAvoidingView)`
   flex: 1;
   padding: 20px;
   background-color: ${colors.white};
