@@ -6,6 +6,7 @@ import { AntDesign } from '@expo/vector-icons'
 import { setCorrectGuess, clearCardsStatus } from '../actions/cards'
 import Card from '../components/Card'
 import GuessSwitch from '../components/GuessSwitch'
+import { NavigationEvents } from 'react-navigation'
 
 class Quiz extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -43,9 +44,8 @@ class Quiz extends Component {
   }
 
   finishQuiz = () => {
-    const { clearCardsStatus, deck, navigation } = this.props
-    clearCardsStatus(deck.id)
-    navigation.navigate('Deck')
+    const { deck, navigation } = this.props
+    navigation.navigate('Score', { deckId: deck.id })
   }
 
   changeCorrectGuess = (card, value) => {
@@ -59,6 +59,11 @@ class Quiz extends Component {
 
     return (
       <Container>
+        <NavigationEvents
+          onWillFocus={() =>
+            this.setState({ currentCard: 0, showAnswer: false })
+          }
+        />
         <Card
           style={{ flex: 2, marginBottom: 5 }}
           card={card}
@@ -105,6 +110,12 @@ class Quiz extends Component {
               <AntDesign size={22} name="caretright" />
             </Button>
           )}
+        </Row>
+        <Row justify="flex-end">
+          <StyledText size="14">
+            Question <Bold>{currentCard + 1}</Bold> of{' '}
+            <Bold>{cards.length}</Bold>
+          </StyledText>
         </Row>
       </Container>
     )

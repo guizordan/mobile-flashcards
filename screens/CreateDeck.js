@@ -5,9 +5,9 @@ import Button from '../components/Button'
 
 import { connect } from 'react-redux'
 import StyledTextInput from '../components/StyledTextInput'
-import { addDeck } from '../actions/decks'
+import { createDeck } from '../actions/decks'
 
-class AddDeck extends Component {
+class CreateDeck extends Component {
   state = {
     title: '',
   }
@@ -18,7 +18,7 @@ class AddDeck extends Component {
 
   render() {
     const { title } = this.state
-    const { addDeck } = this.props
+    const { createDeck } = this.props
 
     return (
       <Container>
@@ -34,11 +34,11 @@ class AddDeck extends Component {
             justify="center"
             disabled={!title}
             onPress={() => {
-              addDeck({ title })
+              createDeck({ title })
               this.setState({ title: '' })
             }}
           >
-            Create
+            Create Deck
           </Button>
         </KeyboardAvoidingView>
       </Container>
@@ -48,5 +48,5 @@ class AddDeck extends Component {
 
 export default connect(
   null,
-  { addDeck },
-)(AddDeck)
+  { createDeck },
+)(CreateDeck)

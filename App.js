@@ -18,9 +18,10 @@ import NavigationService from './services/NavigationService'
 /* Screens */
 import Decks from './screens/Decks'
 import Deck from './screens/Deck'
-import AddDeck from './screens/AddDeck'
+import CreateDeck from './screens/CreateDeck'
 import AddCard from './screens/AddCard'
 import Quiz from './screens/Quiz'
+import Score from './screens/Score'
 /* Screens */
 
 store.subscribe(() => {
@@ -35,6 +36,7 @@ const DecksStack = createStackNavigator(
     Deck,
     AddCard,
     Quiz,
+    Score,
   },
   {
     initialRouteName: 'Decks',
@@ -50,8 +52,8 @@ const DecksStack = createStackNavigator(
   },
 )
 
-const AddDeckStack = createStackNavigator(
-  { AddDeck },
+const CreateDeckStack = createStackNavigator(
+  { CreateDeck },
   {
     defaultNavigationOptions: {
       headerStyle: {
@@ -74,10 +76,10 @@ const MainNavigator = createAppContainer(
           tabBarLabel: 'Decks',
         },
       },
-      AddDeck: {
-        screen: AddDeckStack,
+      CreateDeck: {
+        screen: CreateDeckStack,
         navigationOptions: {
-          tabBarLabel: 'Add Deck',
+          tabBarLabel: 'Create Deck',
         },
       },
     },
@@ -87,7 +89,7 @@ const MainNavigator = createAppContainer(
           const { routeName } = navigation.state
 
           switch (routeName) {
-            case 'AddDeck':
+            case 'CreateDeck':
               return <AntDesign name="pluscircle" size={25} color={tintColor} />
             default:
               return <Feather name="layers" size={25} color={tintColor} />

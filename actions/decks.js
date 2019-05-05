@@ -4,7 +4,7 @@ import NavigationService from '../services/NavigationService'
 export const SET_DECK = '@@decks/SET_DECK'
 export const REMOVE = '@@decks/REMOVE'
 
-export function addDeck(deck) {
+export function createDeck(deck) {
   return dispatch => {
     deck = { ...deck, cards: [], id: generateId() }
 

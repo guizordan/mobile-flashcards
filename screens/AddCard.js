@@ -26,7 +26,7 @@ class AddCard extends Component {
     return (
       <Container>
         <KeyboardAvoidingView behavior="position" enabled>
-          <StyledText center>
+          <StyledText style={{ marginBottom: 10 }} center>
             Adding a new card to <Bold>{deck.title}</Bold>
           </StyledText>
 
@@ -48,7 +48,7 @@ class AddCard extends Component {
             disabled={!question || !answer}
             onPress={() => addCard({ question, answer }, deck.id)}
           >
-            Add
+            Add Card
           </Button>
         </KeyboardAvoidingView>
       </Container>

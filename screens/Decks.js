@@ -55,7 +55,7 @@ class Decks extends Component {
               <Button
                 color="brown"
                 style={{ marginLeft: 10, marginRight: 10 }}
-                onPress={() => navigation.navigate('AddDeck')}
+                onPress={() => navigation.navigate('CreateDeck')}
               >
                 Create a deck
               </Button>

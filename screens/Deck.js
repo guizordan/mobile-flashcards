@@ -14,12 +14,13 @@ class Deck extends Component {
 
   componentDidMount() {
     const { deck, navigation } = this.props
-    navigation.setParams({
-      title: `Deck ${deck ? deck.title : ''}`,
+
+    navigation.addListener('willFocus', () => {
+      navigation.setParams({
+        title: `Deck ${deck ? deck.title : ''}`,
+      })
     })
   }
-
-  startQuiz = () => {}
 
   removeDeck = ({ title, id }) => {
     Alert.alert(`Removing ${title}`, 'Are you sure?', [
@@ -68,7 +69,7 @@ const mapStateToProps = ({ decks }, { navigation }) => {
   const deck = decks[navigation.state.params.deckId]
 
   return {
-    deck: deck || { title: 'loading', cards: [] },
+    deck,
   }
 }
 
