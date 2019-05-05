@@ -7,15 +7,19 @@ It is an app that lets you create decks of cards which contains questions and an
 ## Running
 
 Run `yarn` to install dependencies.
-Run `yarn start` to start the application on expo.
+
+Run `yarn start` to start the application on **expo**.
 
 ## Extras
 
 I've included some extra functionalities, such as:
 
-- A [Navigation service](/src/services/NavigationService.js) , so that the app can navigate after an action call.
-- (https://www.styled-components.com/ "Styled Components").
-- (https://github.com/reduxjs/redux-thunk/ "Redux Thunk").
+- A [Navigation service](/services/NavigationService.js) so that the app can navigate after an action call.
+- [Styled Components](https://www.styled-components.com/).
+- [Redux Thunk](https://github.com/reduxjs/redux-thunk/).
+- ESLint with standard configuration to lint JavaScript code.
+- Prettier to standardize and format code.
+- Stylelint to lint the Styled Components.
 
 ## Tested platforms
 
