@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
   StyledText,
   Bold,
-  Container,
   KeyboardAvoidingContainer,
 } from '../components/styled'
 import Button from '../components/Button'

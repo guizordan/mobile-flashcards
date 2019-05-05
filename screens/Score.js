@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { StyledText, Bold, Row, Container } from '../components/styled'
 import Button from '../components/Button'
 import { connect } from 'react-redux'
-import { AntDesign } from '@expo/vector-icons'
 import { clearCardsStatus } from '../actions/cards'
 
 class Score extends Component {
@@ -19,14 +18,14 @@ class Score extends Component {
 
   backToDeck = () => {
     const { navigation, deck, clearCardsStatus } = this.props
-    clearCardsStatus(deck.id)
     navigation.navigate('Deck', { deckId: deck.id })
+    clearCardsStatus(deck.id)
   }
 
   restartQuiz = () => {
     const { navigation, deck, clearCardsStatus } = this.props
-    clearCardsStatus(deck.id)
     navigation.navigate('Quiz', { deckId: deck.id })
+    clearCardsStatus(deck.id)
   }
 
   render() {

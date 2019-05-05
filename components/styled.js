@@ -34,5 +34,6 @@ export const ScrollContainer = styled(ScrollView)`
 export const KeyboardAvoidingContainer = styled(KeyboardAvoidingView)`
   flex: 1;
   padding: 20px;
+  justify-content: center;
   background-color: ${colors.white};
 `

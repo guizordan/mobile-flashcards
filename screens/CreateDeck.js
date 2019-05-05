@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Button from '../components/Button'
-
+import { KeyboardAvoidingContainer } from '../components/styled'
 import { connect } from 'react-redux'
 import StyledTextInput from '../components/StyledTextInput'
 import { createDeck } from '../actions/decks'
